@@ -73,7 +73,7 @@ const CartIconLayout = styled.div`
 `;
 function Header(){
     const {category}= useParams();
-    const categories = ["Laptops","Gaming","Smart Phones"]
+    const categories = ["Portátiles de hasta 14\"","PC gaming","Móviles y Smartphones"]
     return(
         <Layout>
             <Container>

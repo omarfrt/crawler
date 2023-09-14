@@ -15,6 +15,9 @@ const Title = styled(Typography.PL)`
 const Price = styled(Typography.PM)`
   color: #1d1f22;
 `;
+const Small =styled(Typography.Small)`
+color: #1d1f22;
+`
 const CartButton = styled.button`
   position: absolute;
   right: 15px;
@@ -52,7 +55,7 @@ display: flex;
 flex-direction: column;
 `
 const ImgDiv = styled.div`
-  
+position: relative;
 `;
 const OutOfStock = styled.div`
   position: absolute;
@@ -72,45 +75,36 @@ const OutOfStock = styled.div`
 class ProductCard extends React.Component {
   constructor(props) {
     super(props);
-    // const state = this.props.product.attributes.reduce(
-    //   (acc, curr) => ({ ...acc, [curr.id]: "" }),
-    //   {}
-    // );
-
-    // this.state = {
-    //   state: state,
-    //   isOpen: false,
-    // };
   }
   render() {
-    //const { name, prices, gallery, inStock, id, brand, attributes } =this.props.product;
-    const { name, prices, gallery, inStock, id, brand } ={name:"laptop",prices:20,gallery:"/image",inStock:true,id:"123we12",brand:"lenovo"};
-    let outOfStock;
-    if (!inStock) {
-      outOfStock = <OutOfStock>Out Of Stock</OutOfStock>;
-    }
+    const { name, url, img, price, availabilty, delivery, specifications } =this.props.product; 
+    const newprice =price.replace(/\.00(?!.*\.00)/, '.00');
+    console.log(newprice);
     return (
       <CardLink
-        to={`/product/${id}`}
-        tabIndex={!inStock ? "-1" : "1"}
-        isDisabled={!inStock}
+        to={`${url}`}
+        
       >
          <ImgDiv>
-          <Cover src={gallery[0]} alt="Product" />
-          {outOfStock}
-               
+          <Cover src={img} alt="Product" />
+          
+          <CartButton>
+                   <img src="/empty_cart.svg" alt="cart" />
+                 </CartButton>    
         </ImgDiv>
         <Details>
-                <Title>name</Title>
-                <Title>brand</Title>
-                <Title>specifications</Title>
-                <Price>20</Price> 
-                <CartButton
-                 
-                 // disabled={this.props.product.inStock ? false : true}
-                >
-                  <img src="/empty_cart.svg" alt="cart" />
-                </CartButton>
+                <Title>{name}</Title>
+                {specifications.map((spec,index)=>( 
+                  <div key={index}>
+                  <Price>{spec.key}</Price>
+                <Small>{spec.value}</Small>
+                  </div>   
+                ))}
+                <Price>Delivery time :</Price>
+                <Small>{delivery}</Small>
+                <Price>Price:</Price>
+                <Price>{newprice}€</Price> 
+               
                 </Details>
       </CardLink>
     );
