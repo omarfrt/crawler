@@ -1,11 +1,13 @@
 const cheerio = require("cheerio");
 const axios = require("axios");
+const fs = require('fs');
+const { stringify } = require("querystring");
 
 async function performScraping(){
 const Products= [];
 const axiosResponse = await axios.request({
     method:"GET",
-    url: "https://www.mediamarkt.es/es/category/_port%C3%A1tiles-de-hasta-14-701421.html",
+    url: "https://www.mediamarkt.es/es/category/smartphones-263.html",
     headers: {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
     }
@@ -49,8 +51,20 @@ for (let i = 0; i < ProductAttributes.length; i += 2) {
         specifications: transformedArray,
          }
     Products.push(product);
+
  })
-console.log(JSON.stringify(Products));
+ const categoryName = $(".CategoryMainHead-styled__StyledHeadingWrapper-sc-460c1b7-0.kTjKMr").children("h1").text(); 
+const name = categoryName
+.toLowerCase() // Convert to lowercase
+  .normalize("NFD") // Normalize accented characters
+  .replace(/[\u0300-\u036f]/g, "") // Remove combining diacritical marks
+  .replace(/[^a-zA-Z0-9]+/g, '-') // Replace non-alphanumeric characters with hyphens
+  .replace(/^-+|-+$/g, '') // Remove leading and trailing hyphens
+  .replace(/ /g, '-'); // Replace spaces with hyphens
+let data =JSON.stringify(Products);
+console.log(name);
+fs.writeFileSync(`Scrapper/${name}.json`,data)
+// console.log(data);
 }
 
 performScraping()
