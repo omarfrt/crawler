@@ -24,3 +24,4 @@ const categoryLinks= {
     url:"https://www.mediamarkt.es/es/category/pc-gaming-163.html",
     url:"https://www.mediamarkt.es/es/category/smartphones-263.html"
 }
+const categoryName= {"name":"sc-hLBbgP hCWTaq"}
