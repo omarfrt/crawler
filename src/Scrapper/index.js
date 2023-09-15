@@ -1,13 +1,13 @@
 const cheerio = require("cheerio");
 const axios = require("axios");
 const fs = require('fs');
-const { stringify } = require("querystring");
+
 
 async function performScraping(){
 const Products= [];
 const axiosResponse = await axios.request({
     method:"GET",
-    url: "https://www.mediamarkt.es/es/category/smartphones-263.html",
+    url: "https://www.mediamarkt.es/es/category/_port%C3%A1tiles-de-hasta-14-701421.html",
     headers: {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
     }
@@ -26,7 +26,7 @@ $(".Card-styled__StyledCard-sc-da04f143-0.YGFtd.CardProduct-styled__StyledCard-s
             const values = $(val).text();
             ProductAttributes.push(values);
         })
-        //thank you chat GPT for thus vvvvvvv <3
+        
  const transformedArray = [];
 for (let i = 0; i < ProductAttributes.length; i += 2) {
     const key = ProductAttributes[i];
@@ -40,12 +40,13 @@ for (let i = 0; i < ProductAttributes.length; i += 2) {
         transformedArray.push(transformedObject);
     }
 }
+const newprice =price.replace(/,\d{2}.*/,',00');
  
     const product = {
          name: name,
          url: "https://www.mediamarkt.es"+url,
          img: img,
-         price: price,
+         price: newprice,
          availability:"InStock",
          delivery:"24h",
         specifications: transformedArray,
@@ -63,8 +64,8 @@ const name = categoryName
   .replace(/ /g, '-'); // Replace spaces with hyphens
 let data =JSON.stringify(Products);
 console.log(name);
-fs.writeFileSync(`Scrapper/${name}.json`,data)
-// console.log(data);
+fs.writeFileSync(`./src/Scrapper/${name}.json`,data)
+
 }
 
 performScraping()
