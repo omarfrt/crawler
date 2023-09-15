@@ -15,7 +15,7 @@ function App() {
         <Routes>
         
           <Route element={<CategoryPage/>} path="/:category"/>
-          {/* <Route path="/" element={redirect("/:Laptops")} /> */}
+          <Route path="/" element={<CategoryPage/>} />
           </Routes>
       </Router>
     </div>

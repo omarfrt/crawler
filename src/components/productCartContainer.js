@@ -4,6 +4,7 @@ import styled from "styled-components";
 const Container = styled.section`
   display: flex;
   flex-direction:column;
+  gap:28px;
   flex-wrap: wrap;
   justify-content: flex-start;
   margintop: 103px;
