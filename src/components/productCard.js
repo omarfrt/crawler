@@ -57,29 +57,13 @@ flex-direction: column;
 const ImgDiv = styled.div`
 position: relative;
 `;
-const OutOfStock = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 45%;
-  transform: translate(-50%, -50%);
-  font-family: "Raleway";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 160%;
-  display: flex;
-  align-items: center;
-  color: #8d8f9a;
-`;
 
 class ProductCard extends React.Component {
   constructor(props) {
     super(props);
   }
   render() {
-    const { name, url, img, price, availabilty, delivery, specifications } =this.props.product; 
-    const newprice =price.replace(/\.00(?!.*\.00)/, '.00');
-    console.log(newprice);
+    const { name, url, img, price, delivery, specifications } =this.props.product;  
     return (
       <CardLink
         to={`${url}`}
@@ -103,7 +87,7 @@ class ProductCard extends React.Component {
                 <Price>Delivery time :</Price>
                 <Small>{delivery}</Small>
                 <Price>Price:</Price>
-                <Price>{newprice}€</Price> 
+                <Price>{price}€</Price> 
                
                 </Details>
       </CardLink>
