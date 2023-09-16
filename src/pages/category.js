@@ -7,10 +7,6 @@ import PageContainer from "../components/pageContainer";
 import ProductCard from "../components/productCard";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import laptops from '../ScrapperData/portatiles-de-hasta-14.json'
-import gaming from "../ScrapperData/pc-gaming.json" 
-import phones from "../ScrapperData/moviles-y-smartphones.json"
-
 const Container = styled.section`
   display: flex;
   flex-direction: column;

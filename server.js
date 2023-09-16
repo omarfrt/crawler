@@ -41,8 +41,7 @@ app.get('/api/categories',(req,res)=>{
 app.post('/api/scrape', async (req,res)=>{
     const url = req.body.url;
     const filename=await performScraping(url);
-    const data =require(`./data/${filename}.json` );
-    res.status(200).json(data)
+    res.status(200).json(filename)
 })
   //err handling 
   app.use((req, res, next) => {
