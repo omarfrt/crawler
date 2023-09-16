@@ -2,9 +2,22 @@ const express = require('express');
 const app = express();
 const bodyParser = require("body-parser");
 const performScraping =require('./Scrapper/index');
+const cors = require("cors");
 const getFilesInDirectory = require('./Scrapper/categories');
 // Choose a port number
 const port = 3001;
+//cors handling 
+app.use(
+    cors({
+      origin: "*",
+    })
+  );
+  
+  app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    next();
+  });
+  
 
 app.use(
     bodyParser.urlencoded({
