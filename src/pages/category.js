@@ -6,9 +6,9 @@ import styled from "styled-components";
 import PageContainer from "../components/pageContainer";
 import ProductCard from "../components/productCard";
 import { useParams } from "react-router-dom";
-import laptops from "../Scrapper/portatiles-de-hasta-14.json"
-import gaming from "../Scrapper/pc-gaming.json" 
-import phones from "../Scrapper/moviles-y-smartphones.json"
+import laptops from "../../Scrapper/portatiles-de-hasta-14.json"
+import gaming from "../../Scrapper/pc-gaming.json" 
+import phones from "../../Scrapper/moviles-y-smartphones.json"
 
 const Container = styled.section`
   display: flex;
