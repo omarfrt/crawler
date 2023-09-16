@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as Typography from "./typography"
 import styled from "styled-components";
 import {  Link, useParams  } from "react-router-dom";
@@ -71,21 +71,30 @@ const CartIconLayout = styled.div`
     color: #ffffff;
   }
 `;
-function Header(){
+
+ function Header(props){
+ 
+  const [curent, setCurent] = useState('Default Category');
+
+  const handleCategoryChange = (newCategory) => {
+    setCurent(newCategory);
+    props.onCategoryChange(newCategory);
+  };
+  
     const {category}= useParams();
-    const categories = ["Portátiles de hasta 14\"","PC gaming","Móviles y Smartphones"]
     return(
         <Layout>
             <Container>
               <LinksContainer>
                       <>
                      
-                        {categories.map((Category, index) => (
+                        {props.categories.map((Category, index) => (
                             
                           <Link to={`/${Category}`} key={index}>
                             <HeaderLink
                               key={Category}
                               isActive={Category === category}
+                              onClick={()=> handleCategoryChange(Category)}
                             >
                               {Category}
                             </HeaderLink>
