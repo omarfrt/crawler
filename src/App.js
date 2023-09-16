@@ -1,6 +1,7 @@
 import GlobalStyles from "./global/reset";
 import "./App.css";
 import CategoryPage from "./pages/category";
+import { PopUp } from "./components/popup";
 import {
   BrowserRouter as Router,
  Routes,
@@ -15,7 +16,7 @@ function App() {
         <Routes>
         
           <Route element={<CategoryPage/>} path="/:category"/>
-          <Route path="/" element={<CategoryPage/>} />
+          <Route path="/" element={<PopUp/>} />
           </Routes>
       </Router>
     </div>
